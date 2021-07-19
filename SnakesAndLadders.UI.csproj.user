@@ -4,6 +4,9 @@
     <Compile Update="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SelectPlayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UserControls\Agent.cs">
       <SubType>UserControl</SubType>
     </Compile>

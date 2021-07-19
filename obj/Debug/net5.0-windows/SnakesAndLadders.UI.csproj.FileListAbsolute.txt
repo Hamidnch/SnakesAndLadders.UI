@@ -68,7 +68,6 @@ I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-
 I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-14000410\SnakesAndLadders\SnakesAndLadders.UI\bin\Debug\net5.0-windows\SnakesAndLadders.UI.dll
 I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-14000410\SnakesAndLadders\SnakesAndLadders.UI\bin\Debug\net5.0-windows\ref\SnakesAndLadders.UI.dll
 I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-14000410\SnakesAndLadders\SnakesAndLadders.UI\bin\Debug\net5.0-windows\SnakesAndLadders.UI.pdb
-I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-14000410\SnakesAndLadders\SnakesAndLadders.UI\obj\Debug\net5.0-windows\SnakesAndLadders.UI.csproj.AssemblyReference.cache
 I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-14000410\SnakesAndLadders\SnakesAndLadders.UI\obj\Debug\net5.0-windows\SnakesAndLadders.UI.MainForm.resources
 I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-14000410\SnakesAndLadders\SnakesAndLadders.UI\obj\Debug\net5.0-windows\SnakesAndLadders.UI.Properties.Resources.resources
 I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-14000410\SnakesAndLadders\SnakesAndLadders.UI\obj\Debug\net5.0-windows\SnakesAndLadders.UI.UserControls.Agent.resources
@@ -82,3 +81,5 @@ I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-
 I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-14000410\SnakesAndLadders\SnakesAndLadders.UI\obj\Debug\net5.0-windows\ref\SnakesAndLadders.UI.dll
 I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-14000410\SnakesAndLadders\SnakesAndLadders.UI\obj\Debug\net5.0-windows\SnakesAndLadders.UI.pdb
 I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-14000410\SnakesAndLadders\SnakesAndLadders.UI\obj\Debug\net5.0-windows\SnakesAndLadders.UI.genruntimeconfig.cache
+I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-14000410\SnakesAndLadders\SnakesAndLadders.UI\obj\Debug\net5.0-windows\SnakesAndLadders.UI.SelectPlayerForm.resources
+I:\Programming New\Best Projects\Win Forms\My Projects\Marople\SnakesAndLadders-14000410\SnakesAndLadders\SnakesAndLadders.UI\obj\Debug\net5.0-windows\SnakesAndLadders.UI.csproj.AssemblyReference.cache

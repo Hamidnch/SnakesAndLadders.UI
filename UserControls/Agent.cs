@@ -23,6 +23,7 @@ namespace SnakesAndLadders.UI.UserControls
         {
             InitializeComponent();
             PlayerId = playerId;
+            lbl_Location.Text = playerId.ToString();
         }
 
         public Agent(int playerId, Image image)
@@ -30,6 +31,7 @@ namespace SnakesAndLadders.UI.UserControls
             InitializeComponent();
             PlayerId = playerId;
             this.picture.Image = image;
+            lbl_Location.Text = playerId.ToString();
         }
 
         public void SetImage(Image image)
@@ -40,7 +42,7 @@ namespace SnakesAndLadders.UI.UserControls
 
         private void Agent_LocationChanged(object sender, EventArgs e)
         {
-            lbl_Location.Text = this.Location.X + "," + this.Location.Y;
+            //lbl_Location.Text = this.Location.X + "," + this.Location.Y;
         }
     }
 }

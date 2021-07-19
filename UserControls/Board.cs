@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SnakesAndLadders.UI.UserControls
@@ -12,7 +13,9 @@ namespace SnakesAndLadders.UI.UserControls
     {
         #region Fields
 
-        private int _playerCount = 2;
+        private readonly IDice _dice;
+
+        private int _playerCount = 5;
         private readonly PlayerInfo[] _playerInfo;
         private readonly Place[,] _places = new Place[10, 10];
 
@@ -52,6 +55,10 @@ namespace SnakesAndLadders.UI.UserControls
         {
             InitializeComponent();
             InitializeBoard();
+            
+            IDiceFactory diceFactory = new DiceFactory();
+            _dice = diceFactory.CreateDice();
+
             _playerInfo = new PlayerInfo[_playerCount];
             InitializePlayer();
 
@@ -73,9 +80,9 @@ namespace SnakesAndLadders.UI.UserControls
             var row = _places.GetUpperBound(0);
             var col = _places.GetUpperBound(1);
 
-            for (int i = 0; i <= row; i++)
+            for (var i = 0; i <= row; i++)
             {
-                for (int j = 0; j <= col; j++)
+                for (var j = 0; j <= col; j++)
                 {
                     var currentNumber = (i * 10) + (j + 1);
                     _places[i, j] = new Place(currentNumber, PlaceType.Normal);
@@ -150,7 +157,7 @@ namespace SnakesAndLadders.UI.UserControls
         }
         private void InitializePlayer()
         {
-            for (int i = 0; i < _playerCount; i++)
+            for (var i = 0; i < _playerCount; i++)
             {
                 _playerInfo[i] = new PlayerInfo(i + 1, $"Player{i}", 0);
             }
@@ -159,22 +166,41 @@ namespace SnakesAndLadders.UI.UserControls
 
         #region Public Methods
 
-        public PlayerInfo ThrowUpDice(int playerId)
+        public async Task<PlayerInfo> ThrowUpDice(int playerId)
         {
             this.Turn = playerId;
-            var random = new Random();
-            var diceNumber = random.Next(1, 7);
+            //var random = new Random();
+            var diceNumber = await _dice.Roll(); //random.Next(1, 7);
             var playerInfo = _playerInfo[playerId];
             playerInfo.Id = playerId;
             playerInfo.CurrentDiceNumber = diceNumber;
-
-            if (diceNumber == 6 && !playerInfo.IsStarted)
+            var currentPosition = playerInfo.CurrentPosition + diceNumber;
+            
+            if (diceNumber == 6)
+            {
+                playerInfo.IsSix = true;
+            }
+            
+            if (playerInfo.IsStarted)
+            {
+                playerInfo.CurrentPosition = currentPosition;
+            }
+            else if (playerInfo.IsSix && !playerInfo.IsStarted && !playerInfo.IsFinished)
             {
                 playerInfo.IsStarted = true;
                 playerInfo.CurrentPosition = 1;
                 //playerInfo.CurrentPlace = 
                 var agent = new Agent(playerId);
-                agent.SetImage(playerId == 0 ? Resources.Yellow: Resources.Red);
+
+                agent.SetImage(playerId switch
+                {
+                    0 => Resources.Yellow,
+                    1 => Resources.Red,
+                    2 => Resources.Blue,
+                    3 => Resources.Brown,
+                    4 => Resources.Purple,
+                    _ => Resources.Green
+                });
 
                 var offset = _cellWidth / 7;
                 agent.Location = new Point(this.Left + offset, this.Height - _cellHeight);
@@ -182,10 +208,12 @@ namespace SnakesAndLadders.UI.UserControls
                 agent.BringToFront();
                 agent.Show();
             }
-            else if (playerInfo.IsStarted && (playerInfo.CurrentPosition + diceNumber) < 100)
-            {
-                playerInfo.CurrentPosition += diceNumber;
-            }
+
+            //else if (playerInfo.IsStarted && playerInfo.IsSix && !playerInfo.IsFinished)
+            //{
+            //    playerInfo.SelfTurn = true;
+            //}
+
             return playerInfo;
         }
 
@@ -201,10 +229,10 @@ namespace SnakesAndLadders.UI.UserControls
             var offsetY = ((this.Height) / 10);
 
             var pos = new Point();
-            string str = string.Empty;
-            int startPositionX = this.Left + offsetX;  //24
-            int startPositionY = this.Height;
-            int g = 0;
+            var str = string.Empty;
+            var startPositionX = this.Left + offsetX;  //24
+            var startPositionY = this.Height;
+            var g = 0;
             switch (cell)
             {
                 case > 90:
@@ -286,6 +314,13 @@ namespace SnakesAndLadders.UI.UserControls
                         {
                             agent.Location = playerInfo.CurrentPoint;
                             var currentPosition = GetDestinationBySnakeOrLatter(playerInfo.CurrentPosition);
+
+                            if (playerInfo.CurrentPosition >= 100)
+                            {
+                                playerInfo.IsFinished = true;
+                                agent.Dispose();
+                            }
+
                             if (currentPosition > 0)
                             {
                                 playerInfo.Id = agent.PlayerId;
@@ -306,6 +341,7 @@ namespace SnakesAndLadders.UI.UserControls
 
             return playerInfo;
         }
+
         #endregion Public Methods
     }
 }

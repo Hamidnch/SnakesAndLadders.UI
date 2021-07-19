@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SnakesAndLadders.UI
+namespace SnakesAndLadders.UI.Helpers
 {
-    public interface IBoard
+    public static class UtilityHelper
     {
-
+        public static GameInfo GameInfo;
     }
 }
